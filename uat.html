@@ -14,6 +14,6 @@ const users=[
 ];
 document.getElementById('users').innerHTML=users.map(u=>'<div class="u" onclick="fill(\''+u[1]+'\')"><b>'+u[0]+'</b><small>'+u[1]+' • PIN 1234</small></div>').join('');
 function fill(e){email.value=e;pin.value='1234'}
-function go(){const e=email.value.trim().toLowerCase();const u=users.find(x=>x[1]===e);if(!u||pin.value!=='1234'){alert('Use a listed UAT user and PIN 1234');return}localStorage.setItem('iseco_uat_role',u[2]);localStorage.setItem('iseco_uat_user',u[1]);location.href=u[3]}
+function go(){const e=email.value.trim().toLowerCase();const u=users.find(x=>x[1]===e);if(!u||pin.value!=='1234'){alert('Use a listed UAT user and PIN 1234');return}localStorage.setItem('iseco_uat_role',u[2]);localStorage.setItem('iseco_uat_user',u[1]);const q=new URLSearchParams(location.search);const next=q.get('next');if(next==='onboarding.html'){if(['hr','manager','admin'].includes(u[2])){location.href='onboarding.html';return}else{alert('Workforce Onboarding UAT requires HR, Manager or Admin test login.');return}}location.href=u[3]}
 </script><!-- pages-rebuild-uat -->
 </body></html>

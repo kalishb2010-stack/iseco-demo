@@ -131,15 +131,6 @@ jobs:
             @Override public void onDestroy(){ if(sr!=null)sr.destroy();if(tts!=null)tts.shutdown();super.onDestroy(); }
           }
           JAVA
-      - name: Brand Android launcher
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('android/app/src/main/res/values/colors.xml')
-          s=p.read_text() if p.exists() else '<resources></resources>'
-          if 'colorAccent' not in s: s=s.replace('</resources>','<color name="colorAccent">#E31B23</color></resources>')
-          p.write_text(s)
-          PY
       - name: Set Play target SDK 36
         run: |
           python3 - <<'PY'

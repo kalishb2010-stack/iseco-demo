@@ -126,7 +126,7 @@ jobs:
               if(resultCode==Activity.RESULT_OK && requestCode==REQ_PHOTO) js("window.onNativeEvidenceCaptured&&onNativeEvidenceCaptured('photo')");
               if(resultCode==Activity.RESULT_OK && requestCode==REQ_VIDEO) js("window.onNativeEvidenceCaptured&&onNativeEvidenceCaptured('video')");
             }
-            @Override protected void onDestroy(){ if(sr!=null)sr.destroy();if(tts!=null)tts.shutdown();super.onDestroy(); }
+            @Override public void onDestroy(){ if(sr!=null)sr.destroy();if(tts!=null)tts.shutdown();super.onDestroy(); }
           }
           JAVA
       - name: Brand Android launcher

@@ -107,7 +107,7 @@ jobs:
                   sr.startListening(i);
                 });
               }
-              @JavascriptInterface public void stopSpeech(){ runOnUiThread(()->{if(sr!=null)sr.stopListening();}); }
+              @JavascriptInterface public void stopSpeech(){ runOnUiThread(()->{if(sr!=null)sr.stopListening(); if(tts!=null)tts.stop();}); }
               @JavascriptInterface public String deviceInfo(){
                 try{ JSONObject o=new JSONObject(); o.put("manufacturer",Build.MANUFACTURER);o.put("model",Build.MODEL);o.put("android",Build.VERSION.RELEASE);return o.toString(); }catch(Exception e){return "{}";}
               }

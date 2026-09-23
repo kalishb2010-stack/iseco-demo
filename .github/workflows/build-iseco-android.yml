@@ -32,6 +32,8 @@ jobs:
           marker='<uses-permission android:name="android.permission.INTERNET" />'
           perms='''<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />'''
           s=s.replace(marker,perms)
+          if '<queries>' not in s:
+              s=s.replace('<application', '<queries><intent><action android:name="android.speech.RecognitionService" /></intent></queries>\n    <application')
           p.write_text(s)
           PY
       - name: Add ISECO native emergency bridge
